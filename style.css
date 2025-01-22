@@ -1,0 +1,247 @@
+@import url('https://fonts.googleapis.com/css?family=Indie+Flower');
+@import url('https://fonts.googleapis.com/css?family=Amatic+SC');
+
+/* General body styles */
+body {
+    font-family: 'Indie Flower', cursive;
+    background: #FDE3A7; /* COLORDE FONDO */
+    margin: 0;
+    padding: 0;
+}
+
+/* Text selection styles */
+::selection {
+    background: transparent;
+}
+
+/* Headings */
+h4 {
+    font-size: 26px;
+    line-height: 0.4;/*ESPACIO ENTRE LINEAS TITULO */
+    font-family: 'Amatic SC', cursive;
+}
+
+/* Colors for headings */
+.color1 {
+    color: #1BBC9B; /* Mountain Meadow */
+}
+
+.color2 {
+    color: #C0392B; /* Tall Poppy */
+}
+
+/* Card container */
+.card {
+    color: #013243; /* Sherpa Blue */
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 300px;
+    height: 400px;
+    background: #e0e1dc;
+    transform-style: preserve-3d;
+    transform: translate(-50%, -50%) perspective(2000px);
+    box-shadow: inset 300px 0 50px rgba(0, 0, 0, 0.5), 
+                20px 0 60px rgba(0, 0, 0, 0.5);
+    transition: 1s;
+}
+
+.card:hover {
+    transform: translate(-50%, -50%) perspective(2000px) rotate(15deg) scale(1.2);
+    box-shadow: inset 20px 0 50px rgba(0, 0, 0, 0.5), 
+                0 10px 100px rgba(0, 0, 0, 0.5);
+}
+
+/* Top and right borders */
+.card:before {
+    content: '';
+    position: absolute;
+    top: -5px;
+    left: 0;
+    width: 100%;
+    height: 5px;
+    background: #BAC1BA;
+    transform-origin: bottom;
+    transform: skewX(-45deg);
+}
+
+.card:after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: -5px;
+    width: 5px;
+    height: 100%;
+    background: #92A29C;
+    transform-origin: left;
+    transform: skewY(-45deg);
+}
+
+/* Image container */
+.card .imgBox {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    transform-origin: left;
+    transition: 0.7s;
+}
+
+.card .bark {
+    position: absolute;
+    background: #e0e1dc;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    transition: 0.7s;
+    box-shadow: 300px 200px 100px rgba(0, 0, 0, 0.4) inset;
+}
+
+.card .imgBox img {
+    width: 100%; /* Responsive image */
+    height: auto;
+}
+
+/* Hover effects */
+.card:hover .imgBox {
+    transform: rotateY(-135deg);
+}
+
+.card:hover .bark {
+    opacity: 1;
+    transition: 0.6s;
+}
+
+/* Details section */
+.card .details {
+    position: absolute;
+    top: 0;
+    left: 0;
+    box-sizing: border-box;
+    padding: 0 0 0 10px;
+    z-index: -1;
+    margin-top: 0px;
+}
+
+.card .details p {
+    font-size: 16px;
+    line-height: 0.6;
+    transform: rotate(-10deg);
+    padding-left: 10px;
+}
+
+.card .details h4 {
+    text-align: center;
+}
+
+/* Right-aligned text */
+.text-right {
+    text-align: right;
+}
+
+
+
+
+
+
+
+
+
+
+/* Botón de confeti y notificaciones */
+button {
+    padding: 10px 20px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 20px;
+}
+
+button:hover {
+    filter: brightness(0.9);
+}
+
+.notification-button {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    padding: 15px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    color: #fff;
+    background: #ff6347;
+    border-radius: 25px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    animation: pulse 1.5s infinite;
+}
+
+.notification-button:hover {
+    background: #ff4500;
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+    50% {
+        transform: scale(1.1);
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+    }
+    100% {
+        transform: scale(1);
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+}
+
+/* Contenedor de toasts */
+#toast-container {
+    position: fixed;
+    bottom: 20px;
+    right: 10px;
+    display: flex;
+    flex-direction: column-reverse;
+    gap: 10px;
+}
+
+.toast {
+    background-color: #25D366;
+    color: white;
+    padding: 10px 15px;
+    border-radius: 20px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.5s, transform 0.5s;
+    max-width: 300px;
+    word-wrap: break-word;
+    align-self: flex-end;
+}
+
+.toast.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Fondo del video */
+.video-background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+}
+
+#bg-video {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    min-width: 100%;
+    min-height: 100%;
+    width: auto;
+    height: auto;
+    object-fit: cover;
+}
+
