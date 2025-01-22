@@ -4,127 +4,105 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Invitación</title>
+
+    <!-- Enlace al archivo de estilos externos -->
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="styles.css">
 
+    <!-- Librería de confeti -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
 
-
- /* Estilo para hacer que el botón esté fijo en la pantalla */
+    <style>
+        /* Estilo para el botón de confeti */
         #confetti-button {
             position: fixed;
-            left: 1px;  /* A 5px desde el lado derecho de la pantalla */
-            top: 300px; /* A 20px desde el lado derecho de la pantalla */
-	    z-index: 9999; /* Asegura que el botón esté por encima de otros elementos */
+            left: 1px; /* Margen desde el lado izquierdo */
+            top: 300px; /* Posición desde la parte superior */
+            z-index: 9999; /* Asegura que el botón esté por encima de otros elementos */
             padding: 10px 20px;
             background-color: #FF6347; /* Color de fondo */
-            color: white; /* Color de texto */
+            color: white; /* Color del texto */
             border: none;
             border-radius: 5px;
             font-size: 16px;
             cursor: pointer;
         }
 
- #notification-button {
+        /* Estilo para el botón de notificaciones */
+        #notification-button {
             position: fixed;
-            right: 1px;  /* A 5px desde el lado derecho de la pantalla */
-            z-index: 20000; /* Asegura que el botón esté por encima de otros elementos */
+            right: 1px; /* Margen desde el lado derecho */
+            z-index: 20000; /* Prioridad alta sobre otros elementos */
             padding: 10px 20px;
             background-color: #25D366; /* Color de fondo */
-            color: white; /* Color de texto */
+            color: white; /* Color del texto */
             border: none;
             border-radius: 20px;
             font-size: 16px;
             cursor: pointer;
         }
 
-
-#toast-container {
-          z-index: 9998; /* Asegura que el botón esté por encima de otros elementos */           
+        /* Contenedor de toasts */
+        #toast-container {
+            z-index: 9998; /* Capa inferior al botón */
         }
-
-
-
-
-
     </style>
-    <link rel="stylesheet" href="styles.css">
-    <!-- Librería de confeti -->
-    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
-
-
-
-
 </head>
 <body>
-
-<main>
-
-<!-- Botón de notificación y contenedor de toasts -->
+    <main>
+        <!-- Botón de notificación y contenedor de toasts -->
         <button id="notification-button" class="notification-button">📩 Tienes un mensaje</button>
         <div id="toast-container"></div>
         <audio id="notification-sound" src="plop.mp3"></audio>
 
-
-
-
-
-    <div class="card">
-        <div class="imgBox">
-            <div class="bark"></div>
-            <img src="portada.png" alt="Imagen de invitación">
+        <!-- Tarjeta de invitación -->
+        <div class="card">
+            <div class="imgBox">
+                <div class="bark"></div>
+                <img src="portada.png" alt="Imagen de invitación">
+            </div>
+            <div class="details">
+                <h4 class="color1">✨ ¡Estás invitado a celebrar un día</h4>
+                <h4 class="color2">muy especial conmigo! ✨</h4>
+                <p>Un año más ha pasado, y no hay mejor</p>
+                <p>manera de celebrarlo que rodeada de</p>
+                <p>personas tan increíbles como tú.</p>
+                <p>Tu presencia es el mejor regalo que</p>
+                <p>podría recibir.</p>
+                <p>Espero verte ahí para compartir esta</p>
+                <p>ocasión tan especial.</p>
+                <p>♥♥ Lugar: 4 calle, colonia el caminero.</p>
+                <p>♥♥ Fecha: 19 de marzo</p>
+                <p>♥♥ Hora: 6:00 pm</p>
+                <p class="text-right">♥ Daria</p>
+            </div>
         </div>
-        <div class="details">
-            <h4 class="color1">✨ ¡Estás invitado a celebrar un día </h4>
-            <h4 class="color2">muy especial conmigo! ✨</h4>
-            <p>Un año más ha pasado, y no hay mejor</p>
-            <p>manera de celebrarlo que rodeada de </p>
-<p>personas tan increíbles como tú.</p>        
-<p>Tu presencia es el mejor regalo que</p>
- <p>podría recibir.</p>
-            <p>Espero verte ahí para compartir esta </p>
-            <p>ocasión tan especial.</p>
-            <p>♥♥ Lugar: 4 calle, colonia el caminero.</p>
-            <p>♥♥ Fecha: 19 de marzo</p>
-            <p>♥♥ Hora: 6:00 pm</p>
-            <p class="text-right">♥ Daria</p>
-        </div>
-    </div>
 
+        <!-- Botón de confeti -->
+        <button id="confetti-button">¡Confeti!</button>
+        <audio id="button-sound" src="Confetti.mp3" preload="auto"></audio>
 
+        <!-- Script para el botón de confeti -->
+        <script>
+            // Obtener el botón y el elemento de audio
+            const button = document.getElementById('confetti-button');
+            const audio = document.getElementById('button-sound');
 
-
-
-
-
- <button id="confetti-button">¡Confeti!</button>
-          <audio id="button-sound" src="Confetti.mp3" preload="auto"></audio>
-
-    <script>
-        // Obtener el botón y el elemento de audio
-        const button = document.getElementById('confetti-button');
-        const audio = document.getElementById('button-sound');
-
-        // Agregar evento de clic al botón
-        button.addEventListener('click', () => {
-            try {
-                audio.currentTime = 0; // Reinicia el audio
-                audio.play(); // Reproduce el audio
-            } catch (error) {
-                console.error("Error al reproducir el audio:", error);
-            }
-        });
-    </script>
-
-
-
+            // Agregar evento de clic al botón
+            button.addEventListener('click', () => {
+                try {
+                    audio.currentTime = 0; // Reinicia el audio
+                    audio.play(); // Reproduce el audio
+                } catch (error) {
+                    console.error("Error al reproducir el audio:", error);
+                }
+            });
+        </script>
     </main>
 
     <!-- Enlaces a JavaScript para efectos y animaciones -->
     <script src="script.js"></script>
     <script src="confetti.js"></script>
     <script src="toasts.js"></script>
-
-
-
-
 </body>
 </html>
